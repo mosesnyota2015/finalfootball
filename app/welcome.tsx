@@ -1,11 +1,12 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, Pressable } from 'react-native';
+import { View, Text, StyleSheet, Image, Pressable, Platform } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { colors } from '@/constants/colors';
 import { Trophy, Users, ChartLine } from 'lucide-react-native';
+import * as Haptics from 'expo-haptics';
 
 type RootStackParamList = {
   Welcome: undefined;
@@ -19,6 +20,9 @@ export default function WelcomeScreen() {
   const navigation = useNavigation<NavigationProp>();
 
   const handleGetStarted = () => {
+    if (Platform.OS !== 'web') {
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+    }
     navigation.navigate('MainTabs');
   };
 

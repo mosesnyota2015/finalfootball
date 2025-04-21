@@ -12,7 +12,8 @@ import {
   Image
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useRouter } from 'expo-router';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { colors } from '@/constants/colors';
 import { useStore } from '@/store/useStore';
 import { Position } from '@/types';
@@ -20,8 +21,16 @@ import * as Haptics from 'expo-haptics';
 import * as ImagePicker from 'expo-image-picker';
 import { Camera, Upload, Link } from 'lucide-react-native';
 
+type RootStackParamList = {
+  Welcome: undefined;
+  MainTabs: undefined;
+  AddPlayer: undefined;
+};
+
+type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
+
 export default function AddPlayerScreen() {
-  const router = useRouter();
+  const navigation = useNavigation<NavigationProp>();
   const { addCustomPlayer } = useStore();
   
   const [name, setName] = useState('');
@@ -193,7 +202,7 @@ export default function AddPlayerScreen() {
       [
         { 
           text: 'OK', 
-          onPress: () => router.back() 
+          onPress: () => navigation.goBack() 
         }
       ]
     );

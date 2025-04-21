@@ -27,9 +27,7 @@
         "favicon": "./assets/favicon.png",
         "bundler": "metro"
       },
-      "plugins": [
-        "expo-router"
-      ],
+      "plugins": [],
       "scheme": "fantasy-football"
     }
   }
