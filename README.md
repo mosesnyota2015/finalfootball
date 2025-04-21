@@ -1,5 +1,9 @@
 # Fantasy Football App
 
+DEVELOPER:
+JOHN STANLEY
+sj22acb@herts.ac.uk
+
 A React Native application for managing fantasy football teams, tracking player performances, and recording match results.
 
 ## System Architecture
