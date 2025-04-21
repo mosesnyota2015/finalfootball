@@ -1,7 +1,8 @@
 import React, { useState, useCallback } from 'react';
 import { View, FlatList, StyleSheet, Text, RefreshControl, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useRouter } from 'expo-router';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { colors } from '@/constants/colors';
 import { useStore } from '@/store/useStore';
 import { PlayerCard } from '@/components/PlayerCard';
@@ -9,8 +10,16 @@ import { SearchBar } from '@/components/SearchBar';
 import { FilterBar } from '@/components/FilterBar';
 import { UserPlus } from 'lucide-react-native';
 
+type RootStackParamList = {
+  Welcome: undefined;
+  MainTabs: undefined;
+  AddPlayer: undefined;
+};
+
+type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
+
 export default function PlayersScreen() {
-  const router = useRouter();
+  const navigation = useNavigation<NavigationProp>();
   const [refreshing, setRefreshing] = useState(false);
   
   const {
@@ -50,7 +59,7 @@ export default function PlayersScreen() {
   };
 
   const navigateToAddPlayer = () => {
-    router.push('/add-player');
+    navigation.navigate('AddPlayer');
   };
 
   const renderEmptyList = () => (

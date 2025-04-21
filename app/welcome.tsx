@@ -1,16 +1,25 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, Pressable } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import { useRouter } from 'expo-router';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { colors } from '@/constants/colors';
 import { Trophy, Users, ChartLine } from 'lucide-react-native';
 
+type RootStackParamList = {
+  Welcome: undefined;
+  MainTabs: undefined;
+  AddPlayer: undefined;
+};
+
+type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
+
 export default function WelcomeScreen() {
-  const router = useRouter();
+  const navigation = useNavigation<NavigationProp>();
 
   const handleGetStarted = () => {
-    router.replace('/(tabs)');
+    navigation.navigate('MainTabs');
   };
 
   return (
